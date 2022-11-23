@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnuno-ca <nnuno-ca@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 23:15:43 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/23 17:02:21 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/23 23:51:49 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,10 @@ char	*clean_newline(char	*line)
 void	check_extension(char *map_file)
 {
 	int		i;
-	char	*ext;
 
 	i = ft_strlen(map_file) - 4;
-	ext = ft_strdup(&map_file[i]);
-	if (ft_strncmp(".ber", ext, 4) != 0)
+	if (ft_strncmp(".ber", &map_file[i], 4) != 0)
 		handle_error("Wrong map file extension");
-	free(ext);
 }
 
 void	get_nbr_rows(char *map_file, t_map *map)

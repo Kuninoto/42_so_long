@@ -18,7 +18,7 @@
 
 
 ### Useful links:  
-https://harm-smits.github.io/42docs/libs/minilibx/introduction.html
+https://harm-smits.github.io/42docs/libs/minilibx/introduction.html  
 https://github.com/qst0/ft_libgfx
 
 ### Credits:
