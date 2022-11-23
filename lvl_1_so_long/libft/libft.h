@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 01:35:12 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/22 21:41:05 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/23 22:29:01 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char		*get_next_line(int fd);
 bool		gnl_strchr(const char *str, int ch);
 
-int		ft_printf(const char *__format, ...);
-int		prt_str(char const *str);
-int		prt_ptr(void *ptr_addr);
-int		prt_int(int n);
-int		prt_unsigned(unsigned int nbr);
-int		prt_hexa(unsigned int nbr, bool upper_case);
+int			ft_printf(const char *__format, ...);
+int			prt_str(char const *str);
+int			prt_ptr(void *ptr_addr);
+int			prt_int(int n);
+int			prt_unsigned(unsigned int nbr);
+int			prt_hexa(unsigned int nbr, bool upper_case);
 
-char	*join_n_free(char *to_free, char *to_append);
+char		*join_free(char *to_free, char *to_append);
 
 #endif

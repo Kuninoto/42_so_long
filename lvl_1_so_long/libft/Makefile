@@ -6,7 +6,7 @@
 #    By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 19:35:50 by nnuno-ca          #+#    #+#              #
-#    Updated: 2022/11/22 21:41:21 by nnuno-ca         ###   ########.fr        #
+#    Updated: 2022/11/23 23:05:55 by nnuno-ca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ LIB_SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_s
 		   
 LIB_OBJS =  $(LIB_SRCS:.c=.o)
 
-
 all: $(NAME)
 
 $(NAME): $(LIB_OBJS)
@@ -36,3 +35,5 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 re: fclean all
+
+.SILENT:

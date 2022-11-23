@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnuno-ca <nnuno-ca@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 23:48:42 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/23 19:03:05 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/23 23:19:30 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,12 @@ int close_win_x(void)
 	return (EXIT_SUCCESS);
 }
 
-int	on_press(int key, void *mlx_ptr)
+int	on_press(int key)
 {
 	static int counter;
 
 	if (key == ESC)
 		exit(EXIT_SUCCESS);
-
 
 	
 	counter++;
@@ -32,16 +31,6 @@ int	on_press(int key, void *mlx_ptr)
 	return (EXIT_SUCCESS);	
 }
 
-/* int deal_mouse(int button, int x, int y, void *mlx_ptr, void *win_ptr)
-{
-	ft_printf("button = %d\n", button);
-	ft_printf("x = %d\n", x);
-	ft_printf("y = %d\n", y);
-
-
-	return (EXIT_SUCCESS);
-}
- */
 void	args_check(int argc, char **argv)
 {
 	if (argc != 2)
@@ -57,31 +46,39 @@ int main(int argc, char **argv)
 
  	void	*mlx_ptr;
 	void	*win_ptr;
-
-	char	*ylw_path;
 	void	*ylw_ptr;
 	
-	char	*red_path;
 	void	*red_ptr;
+	
+	void	*grass_ptr;
+
+	void	*meat_ptr;
 
 	int		width;
 	int		height;
 
 	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 900, 600, "so_long");
+	win_ptr = mlx_new_window(mlx_ptr, 13 * 48, 5 * 48, "so_long");
 	if (!win_ptr)
 		handle_error("Failed to open the game window!");
 
-	ylw_path = YLW_DINO_01;
-	ylw_ptr = mlx_xpm_file_to_image(mlx_ptr, ylw_path, &width, &height);
+	ylw_ptr = mlx_xpm_file_to_image(mlx_ptr, YLW_DINO_01, &width, &height);
 
-	red_path = RED_DINO_01;
-	red_ptr = mlx_xpm_file_to_image(mlx_ptr, red_path, &width, &height);
+	red_ptr = mlx_xpm_file_to_image(mlx_ptr, RED_DINO_01, &width, &height);
 
-	mlx_put_image_to_window(mlx_ptr, win_ptr, ylw_ptr, 1 * 64, 1 * 64);
-	mlx_put_image_to_window(mlx_ptr, win_ptr, red_ptr, 2 * 64, 1 * 64);
-	mlx_key_hook(win_ptr, on_press, NULL);
+	grass_ptr = mlx_xpm_file_to_image(mlx_ptr, GRASS_01, &width, &height);
+
+	meat_ptr = mlx_xpm_file_to_image(mlx_ptr, MEAT, &width, &height);
+
+	for (int i = 0; i <= 13; i++)
+		for (int j = 0; j <= 5; j++)
+			mlx_put_image_to_window(mlx_ptr, win_ptr, grass_ptr, j * IMG_SIZE, i * IMG_SIZE);
 	
+	mlx_put_image_to_window(mlx_ptr, win_ptr, ylw_ptr, 1 * 64, 1 * 64);
+	mlx_put_image_to_window(mlx_ptr, win_ptr, red_ptr, 5 * 64, 5 * 64);
+	mlx_put_image_to_window(mlx_ptr, win_ptr, meat_ptr, 7 * 64, 7 * 64);
+
+	mlx_key_hook(win_ptr, on_press, NULL);
 	
 	// close windows on mouse press X
 	mlx_hook(win_ptr, 17, 1L << 17, close_win_x, NULL);

@@ -6,38 +6,44 @@
 #    By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 23:48:22 by nnuno-ca          #+#    #+#              #
-#    Updated: 2022/11/20 23:11:05 by nnuno-ca         ###   ########.fr        #
+#    Updated: 2022/11/23 23:07:53 by nnuno-ca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 MLXFLAGS = -L ./mlx -lmlx -Ilmlx -lXext -lX11
+LIBFT = ./libft/libft.a
 RM = rm -rf
 NAME = so_long
 
-# cc cflags main.c libft.a mlxflags -o NAME
-
-SRCS = main.c
+SRCS = srcs/handle_error.c\
+	   srcs/map/get_map.c srcs/map/map_check.c srcs/map/map_init.c srcs/map/path_check.c\
+	   main.c
 OBJS = $(SRCS:.c=.o)
-
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(MAKE) --no-print-directory -C ./libft
-	@$(MAKE) --no-print-directory -C ./mlx
-	echo "\033[36mMaking so_long..."
-#	$(CC) $(OBJS) $()
-
-#%.o: %c
-#	$(CC) $(CFLAGS) -c $*.c
+	echo "\033[36mMaking libft...\033[0m"
+	$(MAKE) --no-print-directory -C ./libft
+	echo "\033[36mDone\033[0m"
+	echo "\033[36mMaking mlx...\033[0m"
+	$(MAKE) --no-print-directory -C ./mlx
+	echo "\033[36mDone\033[0m"
+	echo "\033[36mMaking so_long...\033[0m"
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLXFLAGS) -o $(NAME)
+	echo "\033[36mDone!\033[0m"
 
 bonus: all
 
 clean:
+	$(MAKE) clean -C ./libft
 	$(RM) $(OBJS)
+	echo "\033[36mDone!\033[0m"
 fclean: clean
 	$(MAKE) fclean -C ./libft
 	$(RM) $(NAME)
 re: fclean all
+
+.SILENT:

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnuno-ca <nnuno-ca@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 00:20:43 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/23 18:45:57 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/23 22:30:14 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 void	handle_error(char *error_msg);
 
-typedef	struct s_coords {
+typedef struct s_coords {
 	int	x;
 	int	y;
 }				t_coords;
