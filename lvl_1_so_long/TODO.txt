@@ -1,0 +1,6 @@
+- get map && validation (backtracking)
+
+
+
+
+- Exit when window cross is pressed (hook mouse event);
