@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 00:20:43 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/23 22:30:14 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/24 22:16:02 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,23 @@ typedef struct s_map {
 	int				c_oks;
 }				t_map;
 
-t_map	*map_init(void);
+typedef struct s_game {
+	t_map	*map;
+	void	*mlx_ptr;
+	void	*win_ptr;
+
+	int		player_moves;
+	
+}				t_game;
+
+t_game	*init_game(void);
+t_map	*init_map(void);
 t_map	*get_map(char *map_file);
 void	map_check(t_map	*map);
 void	path_check(t_map *map);
+
+int 	close_win_x(void);
+int		on_press(int key);
+void	init_mlx(t_game *game);
 
 #endif
