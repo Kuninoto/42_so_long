@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   images.h                                           :+:      :+:    :+:   */
+/*   handle_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 18:38:04 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/24 21:33:23 by nnuno-ca         ###   ########.fr       */
+/*   Created: 2022/11/24 21:26:58 by nnuno-ca          #+#    #+#             */
+/*   Updated: 2022/11/24 21:27:42 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMAGES_H
-# define IMAGES_H
+#include "../includes/so_long.h"
 
-# define GHOST "./textures/ghost.xpm"
-# define BRICK "./textures/brick.xpm"
-# define COIN "./textures/coin.xpm"
+int close_win_x(void)
+{
+	exit(EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
+}
 
-# define IMG_SIZE 32
-// 32x32
+int	on_press(int key)
+{
+	static int counter;
 
-#endif
+	if (key == ESC)
+		exit(EXIT_SUCCESS);
+
+	
+	counter++;
+	ft_printf("counter = %d\n", counter);
+	return (EXIT_SUCCESS);	
+}
+

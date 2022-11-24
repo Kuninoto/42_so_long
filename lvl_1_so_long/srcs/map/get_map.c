@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 23:15:43 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/23 23:51:49 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/24 22:15:32 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_map	*get_map(char *map_file)
 	t_map	*map;
 
 	check_extension(map_file);
-	map = map_init();
+	map = init_map();
 	get_nbr_rows(map_file, map);
 	map->map = malloc((map->rows + 1) * sizeof(char *));
 	get_lines(map_file, map);

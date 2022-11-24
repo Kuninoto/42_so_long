@@ -6,7 +6,7 @@
 #    By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 23:48:22 by nnuno-ca          #+#    #+#              #
-#    Updated: 2022/11/23 23:07:53 by nnuno-ca         ###   ########.fr        #
+#    Updated: 2022/11/24 22:14:53 by nnuno-ca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ RM = rm -rf
 NAME = so_long
 
 SRCS = srcs/handle_error.c\
-	   srcs/map/get_map.c srcs/map/map_check.c srcs/map/map_init.c srcs/map/path_check.c\
+	   srcs/map/get_map.c srcs/map/map_check.c srcs/map/path_check.c\
+	   srcs/handle_input.c\
+	   srcs/initializers.c\
 	   main.c
 OBJS = $(SRCS:.c=.o)
 
