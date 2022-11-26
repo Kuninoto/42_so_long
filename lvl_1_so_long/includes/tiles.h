@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   images.h                                           :+:      :+:    :+:   */
+/*   tiles.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:38:04 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/24 21:33:23 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/26 01:13:58 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef IMAGES_H
 # define IMAGES_H
 
-# define GHOST "./textures/ghost.xpm"
-# define BRICK "./textures/brick.xpm"
-# define COIN "./textures/coin.xpm"
+# define WALL_TILE "./textures/wall.xpm"
+# define FLOOR_TILE "./textures/floor.xpm"
+# define PLAYER_TILE "./textures/player.xpm"
+# define ENEMY_TILE "./textures/ghost.xpm"
+# define COLLECTIBLE_TILE "./textures/coin.xpm"
+# define EXIT_TILE "./textures/exit.xpm"
 
-# define IMG_SIZE 32
+# define TILE_SIZE 64
 // 32x32
 
 #endif
