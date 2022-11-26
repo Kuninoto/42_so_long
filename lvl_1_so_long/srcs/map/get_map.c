@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 23:15:43 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/24 22:15:32 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/25 22:38:32 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,11 @@ void	get_nbr_rows(char *map_file, t_map *map)
 {
 	int		counter;
 	int		map_fd;
-	char	*first_line;
 
 	counter = 0;
 	map_fd = open(map_file, O_RDONLY);
 	if (map_fd == -1)
 		handle_error("Couldn't open map's file");
-	first_line = get_next_line(map_fd);
-	if (first_line)
-	{
-		ft_strlen(first_line);
-		counter++;
-	}
 	while (get_next_line(map_fd))
 		counter++;
 	if (counter == 0)
