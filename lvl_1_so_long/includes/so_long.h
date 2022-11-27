@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: nnuno-ca <nnuno-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 00:20:43 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/27 14:22:45 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:26:46 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define EXIT 'E'
 # define COLLECTIBLE 'C'
 # define PLAYER 'P'
+
+# define WIN_MSG "\nYou won this extremely difficult game, that's all folks!\n"
 
 typedef struct s_map {
 	char			**map;
