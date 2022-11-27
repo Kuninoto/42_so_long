@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 21:46:52 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/27 03:21:30 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/27 03:56:30 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	move_player(t_game *game, bool horizontal, int length)
 
 int	on_press(int key, t_game *game)
 {
+	game->moves++;
 	if (key == ESC)
 		exit(EXIT_SUCCESS);
 	else if (key == W || key == UP)
@@ -67,8 +68,7 @@ int	on_press(int key, t_game *game)
 		move_player(game, false, 1);
 	else if (key == D || key == RIGHT)
 		move_player(game, true, 1);
-	game->moves++;
-	//ft_printf("moves = %d\n", game->moves);
+	ft_printf("moves = %d\n", game->moves);
 	return (EXIT_SUCCESS);	
 }
 
