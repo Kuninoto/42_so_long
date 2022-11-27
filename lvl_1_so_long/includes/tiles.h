@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:38:04 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/26 01:13:58 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/27 03:41:11 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,5 @@
 # define EXIT_TILE "./textures/exit.xpm"
 
 # define TILE_SIZE 64
-// 32x32
 
 #endif

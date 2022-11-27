@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 21:20:29 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/27 03:39:58 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/27 03:50:19 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ void	render_tilemap(t_game *game)
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, 
 		game->tiles.player, TILE_SIZE * game->map.player_y, 
 		TILE_SIZE * game->map.player_x);
-	mlx_string_put(game->mlx_ptr, game->win_ptr, TILE_SIZE * game->map.player_x, TILE_SIZE * game->map.player_y, -1, ft_itoa(game->moves));
+	mlx_string_put(game->mlx_ptr, game->win_ptr, TILE_SIZE,
+			TILE_SIZE, -1, ft_itoa(game->moves));
 }
 
 void	get_tilemap(t_game *game)
