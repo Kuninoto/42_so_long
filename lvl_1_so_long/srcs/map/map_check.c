@@ -6,13 +6,13 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:38:12 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/27 03:12:52 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/27 03:23:14 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void	errors(t_game *game)
+void	errors_on_elements(t_game *game)
 {
 	if (game->map.exit == 0 || game->map.exit > 1)
 		handle_error("Invalid number of Exits (E)");
@@ -47,7 +47,7 @@ void	elements_check(t_game *game)
 			}
 		}
 	}
-	errors(game);
+	errors_on_elements(game);
 }
 
 void	closed_check(t_game *game)
