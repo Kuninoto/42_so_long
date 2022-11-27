@@ -2,7 +2,7 @@
 
 ## Grade: 110/100
 
-###  Screenshots:
+###  Screenshot:
 <img src="https://github.com/Kuninoto/42_so_long/blob/master/extras/game_print01.png"/>
 
 ### Installing and running the project:
@@ -20,7 +20,7 @@
 4- `make clean` so that you don't keep those object files that you won't need anymore
 
 	make clean
-5- Run your new, extremely sexy, game!
+5- Run your new, extremely sexy, game, with a map of your choice!
 
 	./so_long maps/[which_ever_map_you_want].ber
 
