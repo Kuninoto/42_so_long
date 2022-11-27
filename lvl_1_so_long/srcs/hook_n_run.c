@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_n_run.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: nnuno-ca <nnuno-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 21:46:52 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/27 14:00:31 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:43:45 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_tile(t_game *game)
 {
 	if (game->map.map[game->map.player_x][game->map.player_y] == COLLECTIBLE)
 	{
-		game->map.map[game->map.player_x][game->map.player_x] = OPEN_SPACE;
+		game->map.map[game->map.player_x][game->map.player_y] = OPEN_SPACE;
 		game->tile_map[game->map.player_x][game->map.player_y].img
 			= game->tiles.floor;
 		game->map.collectibles--;
@@ -31,7 +31,7 @@ void	check_tile(t_game *game)
 	if (game->map.map[game->map.player_x][game->map.player_y] == EXIT
 		&& game->map.collectibles == 0)
 	{
-		ft_printf("\n---------------- You won! ----------------\n");
+		ft_printf(WIN_MSG);
 		exit(EXIT_SUCCESS);
 	}
 }
