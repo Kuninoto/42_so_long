@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nnuno-ca <nnuno-ca@student.42.fr>          +#+  +:+       +#+         #
+#    By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 23:48:22 by nnuno-ca          #+#    #+#              #
-#    Updated: 2022/11/26 16:57:34 by nnuno-ca         ###   ########.fr        #
+#    Updated: 2022/11/27 03:07:41 by nnuno-ca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ NAME = so_long
 
 SRCS = srcs/handle_error.c\
 	   srcs/map/get_map.c srcs/map/map_check.c srcs/map/path_check.c\
-	   srcs/tilemap.c\
-	   srcs/mlx_hooks.c\
+	   srcs/get_tilemap.c\
+	   srcs/hook_n_run.c\
 	   srcs/initializers.c\
 	   main.c
 OBJS = $(SRCS:.c=.o)

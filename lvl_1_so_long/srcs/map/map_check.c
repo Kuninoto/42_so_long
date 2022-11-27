@@ -3,97 +3,97 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnuno-ca <nnuno-ca@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:38:12 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/23 18:01:25 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/27 03:12:52 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void	errors(t_map *map)
+void	errors(t_game *game)
 {
-	if (map->exit == 0 || map->exit > 1)
+	if (game->map.exit == 0 || game->map.exit > 1)
 		handle_error("Invalid number of Exits (E)");
-	if (map->collectibles == 0)
+	if (game->map.collectibles == 0)
 		handle_error("Map doesn't have any Collectible (C)");
-	if (map->player == 0 || map->player > 1)
+	if (game->map.player == 0 || game->map.player > 1)
 		handle_error("Invalid number of Starting Positions (P)");
 }
 
-void	elements_check(t_map *map)
+void	elements_check(t_game *game)
 {
 	int		i;
 	int		j;
 
 	i = -1;
-	while (map->map[++i])
+	while (game->map.map[++i])
 	{
 		j = -1;
-		while (map->map[i][++j])
+		while (game->map.map[i][++j])
 		{
-			if (ft_strchr("ECP01", map->map[i][j]) == NULL)
+			if (ft_strchr("ECP01", game->map.map[i][j]) == NULL)
 				handle_error("Invalid character on map's file");
-			if (map->map[i][j] == 'E')
-				map->exit++;
-			else if (map->map[i][j] == 'C')
-				map->collectibles++;
-			else if (map->map[i][j] == 'P')
+			if (game->map.map[i][j] == 'E')
+				game->map.exit++;
+			else if (game->map.map[i][j] == 'C')
+				game->map.collectibles++;
+			else if (game->map.map[i][j] == 'P')
 			{
-				map->player_coords.x = i;
-				map->player_coords.y = j;
-				map->player++;
+				game->map.player_x = i;
+				game->map.player_y = j;
+				game->map.player++;
 			}
 		}
 	}
-	errors(map);
+	errors(game);
 }
 
-void	closed_check(t_map *map)
+void	closed_check(t_game *game)
 {
 	int		rows;
 	int		columns;
 	int		i;
 	int		j;
 
-	rows = map->rows;
-	columns = map->columns;
+	rows = game->map.rows;
+	columns = game->map.columns;
 	i = 0;
 	j = 0;
-	while (map->map[i][j] || map->map[rows - 1][j])
+	while (game->map.map[i][j] || game->map.map[rows - 1][j])
 	{
-		if (map->map[i][j] != '1' || map->map[rows - 1][j] != '1')
+		if (game->map.map[i][j] != '1' || game->map.map[rows - 1][j] != '1')
 			handle_error("Map is not closed by walls");
 		j++;
 	}
-	while (map->map[i + 1] != NULL)
+	while (game->map.map[i + 1] != NULL)
 	{
-		if (map->map[i][0] != '1' || map->map[i][columns - 1] != '1')
+		if (game->map.map[i][0] != '1' || game->map.map[i][columns - 1] != '1')
 			handle_error("Map is not closed by walls");
 		i++;
 	}
 }
 
-void	form_check(t_map *map)
+void	form_check(t_game *game)
 {
 	int	len;
 	int	i;
 
-	len = map->columns;
+	len = game->map.columns;
 	i = 0;
-	while (map->map[i] != NULL)
+	while (game->map.map[i] != NULL)
 	{
-		if (len != (int)ft_strlen(map->map[i]))
+		if (len != (int)ft_strlen(game->map.map[i]))
 			handle_error("Invalid map format");
 		i++;
 	}
 }
 
-void	map_check(t_map *map)
+void	map_check(t_game *game)
 {
-	form_check(map);
-	closed_check(map);
-	elements_check(map);
-	path_check(map);
+	form_check(game);
+	closed_check(game);
+	elements_check(game);
+	path_check(game);
 }

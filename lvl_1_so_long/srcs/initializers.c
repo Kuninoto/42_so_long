@@ -3,33 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   initializers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnuno-ca <nnuno-ca@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 23:18:39 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/26 16:10:39 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/27 03:10:22 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-t_map	*init_map(void)
+void	init_game(t_game *game)
 {
-	t_map	*map;
+	printf("INIT_GAME\n");
+	game->map.map = NULL;
+	game->map.rows = 0;
+	game->map.columns = 0;
+	game->map.collectibles = 0;
+	game->map.exit = 0;
+	game->map.player = 0;
+	game->map.player_x = 0;
+	game->map.player_y = 0;
+	game->map.exit_ok = false;
+	game->map.c_oks = 0;
 
-	map = malloc(sizeof(t_map));
-	if (!map)
-		handle_error("Failed to allocate memory");
-	map->map = NULL;
-	map->rows = 0;
-	map->columns = 0;
-	map->collectibles = 0;
-	map->exit = 0;
-	map->player = 0;
-	map->player_coords.x = 0;
-	map->player_coords.y = 0;
-	map->exit_ok = false;
-	map->c_oks = 0;
-	return (map);
+	game->tiles.coin = NULL;
+	game->tiles.enemy = NULL;
+	game->tiles.exit = NULL;
+	game->tiles.floor = NULL;
+	game->tiles.player = NULL;
+	game->tiles.wall = NULL;
+
+	game->moves = 0;
 }
 
 void	init_mlx(t_game *game)
@@ -38,26 +42,10 @@ void	init_mlx(t_game *game)
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 		handle_error("Couldn't initialize mlx");
-	game->win_ptr = mlx_new_window(game->mlx_ptr, game->map->columns * TILE_SIZE, game->map->rows * TILE_SIZE, "so_long");
+	game->win_ptr = mlx_new_window(game->mlx_ptr, game->map.columns * TILE_SIZE, 
+		game->map.rows * TILE_SIZE, "so_long");
 	if (!game->win_ptr)
 		handle_error("Couldn't open game window");
-	
-	mlx_key_hook(game->win_ptr, on_press, NULL);
-	mlx_hook(game->win_ptr, 17, 1L << 17, close_game, NULL);
+/* 	mlx_key_hook(game->win_ptr, on_press, NULL);
+	mlx_hook(game->win_ptr, 17, 1L << 17, close_game, NULL); */
 }
-
-t_game	*init_game(char *map_path)
-{
-	t_game	*game;
-
-	game = malloc(sizeof(game));
-	if (!game)
-		handle_error("Failed to allocate memory");
-	game->moves = 0;
-	printf("INIT_GAME\n");
-	game->map = get_map(map_path);
-	init_mlx(game);
-	init_tilemap(game);
-	return (game);
-}
-
