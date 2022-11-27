@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 23:15:43 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/25 22:38:32 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/27 02:38:40 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	check_extension(char *map_file)
 		handle_error("Wrong map file extension");
 }
 
-void	get_nbr_rows(char *map_file, t_map *map)
+void	get_nbr_rows(char *map_file, t_game *game)
 {
 	int		counter;
 	int		map_fd;
@@ -43,11 +43,11 @@ void	get_nbr_rows(char *map_file, t_map *map)
 		counter++;
 	if (counter == 0)
 		handle_error("Map file is empty");
-	map->rows = counter;
+	game->map.rows = counter;
 	close(map_fd);
 }
 
-void	get_lines(char *map_file, t_map *map)
+void	get_lines(char *map_file, t_game *game)
 {
 	int		map_fd;
 	int		i;
@@ -56,30 +56,25 @@ void	get_lines(char *map_file, t_map *map)
 	if (map_fd == -1)
 		handle_error("Couldn't open map's file");
 	i = 0;
-	while (i < map->rows)
-		map->map[i++] = get_next_line(map_fd);
-	map->map[i] = NULL;
+	while (i < game->map.rows)
+		game->map.map[i++] = get_next_line(map_fd);
+	game->map.map[i] = NULL;
 	close(map_fd);
 	i = 0;
-	while (i < (map->rows - 1))
+	while (i < (game->map.rows - 1))
 	{
-		map->map[i] = clean_newline(map->map[i]);
+		game->map.map[i] = clean_newline(game->map.map[i]);
 		i++;
 	}
-	map->columns = ft_strlen(map->map[0]);
+	game->map.columns = ft_strlen(game->map.map[0]);
 }
 
-t_map	*get_map(char *map_file)
+void	get_map(char *map_file, t_game *game)
 {
-	t_map	*map;
-
 	check_extension(map_file);
-	map = init_map();
-	get_nbr_rows(map_file, map);
-	map->map = malloc((map->rows + 1) * sizeof(char *));
-	get_lines(map_file, map);
-	map_check(map);
-	return (map);
+	get_nbr_rows(map_file, game);
+	game->map.map = malloc((game->map.rows + 1) * sizeof(char *));
+	get_lines(map_file, game);
 }
 
 /* 

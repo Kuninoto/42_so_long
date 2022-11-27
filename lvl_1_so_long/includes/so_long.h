@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 00:20:43 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/25 23:17:08 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/27 03:13:21 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 # define COLLECTIBLE 'C'
 # define PLAYER 'P'
 
-typedef struct s_coords {
+/* typedef struct s_coords {
 	int	x;
 	int	y;
-}				t_coords;
+}				t_coords; */
 
 typedef struct s_map {
 	char			**map;
@@ -36,7 +36,8 @@ typedef struct s_map {
 	int				collectibles;
 	int				exit;
 	int				player;
-	t_coords		player_coords;
+	int				player_x;
+	int				player_y;
 	bool			exit_ok;
 	int				c_oks;
 }				t_map;
@@ -56,7 +57,7 @@ typedef struct s_tiles {
 }				t_tiles;
 
 typedef struct s_game {
-	t_map		*map;
+	t_map		map;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_tiles		tiles;
@@ -66,21 +67,16 @@ typedef struct s_game {
 
 void	handle_error(char *error_msg);
 
-t_game	*init_game(char *map_path);
-t_map	*get_map(char *map_file);
+void	init_game(t_game *game);
 
-t_map	*init_map(void);
-void	init_tilemap(t_game *game);
-
-void	map_check(t_map	*map);
-void	path_check(t_map *map);
-void	open_xpm(t_game *game);
-
-void	render_tilemap(t_game *game);
-
-int 	close_game(void);
-int		on_press(int key, t_game *game);
+void	get_map(char *map_file, t_game *game);
+void	map_check(t_game *game);
+void	path_check(t_game *game);
 
 void	init_mlx(t_game *game);
+void	get_tilemap(t_game *game);
+
+void	render_tilemap(t_game *game);
+void	hook_n_run(t_game *game);
 
 #endif
