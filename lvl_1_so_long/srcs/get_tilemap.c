@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 21:20:29 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/27 14:17:58 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/27 14:35:40 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	init_tilemap(t_game *game)
 	int		i;
 	int		j;
 
-	game->tile_map = malloc((game->map.rows + 1) * sizeof(t_tilemap *));
+	game->tile_map = malloc((game->map.rows) * sizeof(t_tilemap *));
 	if (!game->tile_map)
 		handle_error("Failed to allocate memory for tilemap");
 	i = -1;
