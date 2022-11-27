@@ -3,7 +3,7 @@
 ## Grade: 110/100
 
 ###  Screenshots:
-<img src="https://github.com/Kuninoto/42_so_long/blob/master/extras/game_print01.png" width="50%"/>
+<img src="https://github.com/Kuninoto/42_so_long/blob/master/extras/game_print01.png"/>
 
 ### Installing and running the project:
 
@@ -26,11 +26,11 @@
 
 ### Creating new maps:
 
-	`0` - Free space;  
-	`1` - Wall;  
-	`C` - Collectible;  
-	`E` - Exit;  
-	`P` - Player starting position;  
+	'0' - Free space;  
+	'1' - Wall;  
+	'C' - Collectible;  
+	'E' - Exit;  
+	'P' - Player's starting position;  
 	To be valid a map must respect the following:  
 		- Be in .ber format;  
 		- Be closed by walls;  
