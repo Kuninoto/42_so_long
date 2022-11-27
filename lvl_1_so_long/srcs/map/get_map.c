@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 23:15:43 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/27 02:38:40 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/27 03:22:50 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,3 @@ void	get_map(char *map_file, t_game *game)
 	game->map.map = malloc((game->map.rows + 1) * sizeof(char *));
 	get_lines(map_file, game);
 }
-
-/* 
-		1111111111111
-		10010000000C1
-		1000011111001
-		1P0011E000001
-		1111111111111 
-*/
-/*
-	0 for an empty space,
-	1 for a wall,
-	C for a collectible,
-	E for a map exit,
-	P for the player’s starting position
-*/
