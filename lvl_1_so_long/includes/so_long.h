@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 00:20:43 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/27 03:13:21 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/27 14:22:45 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,6 @@
 # define EXIT 'E'
 # define COLLECTIBLE 'C'
 # define PLAYER 'P'
-
-/* typedef struct s_coords {
-	int	x;
-	int	y;
-}				t_coords; */
 
 typedef struct s_map {
 	char			**map;

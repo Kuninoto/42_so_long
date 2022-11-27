@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 23:18:39 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/27 03:22:28 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/27 13:59:05 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ void	init_mlx(t_game *game)
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 		handle_error("Couldn't initialize mlx");
-	game->win_ptr = mlx_new_window(game->mlx_ptr, game->map.columns * TILE_SIZE, 
-		game->map.rows * TILE_SIZE, "so_long");
+	game->win_ptr = mlx_new_window(game->mlx_ptr,
+			game->map.columns * TILE_SIZE, game->map.rows * TILE_SIZE,
+			"so_long");
 	if (!game->win_ptr)
 		handle_error("Couldn't open game window");
 }
