@@ -55,6 +55,7 @@
 ### Useful links:  
 - https://harm-smits.github.io/42docs/libs/minilibx/introduction.html  
 - https://itch.io/  
+- https://opengameart.org/  
 
 #### Assets Credit:    
 - https://jamiecross.itch.io/8-bit-dungeon-tilesetsprites
