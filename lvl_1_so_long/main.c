@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 23:48:42 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/27 03:04:21 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2022/11/27 14:21:20 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	args_check(int argc, char **argv)
 		handle_error("NULL map argument");
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_game	game;
 
