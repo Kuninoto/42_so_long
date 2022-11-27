@@ -8,6 +8,7 @@
 ### Installing and running the project:
 
 1- Installing mlx dependencies
+
 	sudo apt-get install make xorg libxext-dev zlib1g-dev libbsd-dev
 
 2- Clone this repository
