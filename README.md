@@ -44,7 +44,7 @@
 	(You can check examples of valid maps on maps folder);
 
 ###  Subject:
-[so_long en_subject](https://github.com/Kuninoto/42_so_long/blob/master/extras/en.subject_so_long.pdf)
+[so_long en_subject](./extras/en.subject_so_long.pdf)
 
 #### Makefile Available Targets:  
 `make` or `make all` - compiles so_long   
@@ -62,7 +62,7 @@
 - https://jamiecross.itch.io/8-bit-dungeon-tilesetsprites
 
 ## Disclaimer
-> At [42School](https://en.wikipedia.org/wiki/42_(school)), almost every project must be written in accordance to the [Norm](.extras/en_norme.pdf), the schools' coding standard. As a result, the implementation of certain parts may appear strange and for sure had room for improvement.
+> At [42School](https://en.wikipedia.org/wiki/42_(school)), almost every project must be written in accordance to the [Norm](./extras/en_norme.pdf), the schools' coding standard. As a result, the implementation of certain parts may appear strange and for sure had room for improvement.
 
 ---
 Made by Nuno Carvalho (Kuninoto) | nnuno-ca@student.42porto.com  
