@@ -13,7 +13,7 @@
 
 2- Clone this repository
 	
-	git clone https://github.com/Kuninoto/Libft
+	git clone https://github.com/Kuninoto/42_so_long
 3- Navigate to _lvl_2_so_long_ and run `make`
 	
 	cd 42_so_long/lvl_2_so_long
