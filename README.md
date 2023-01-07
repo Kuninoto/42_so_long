@@ -43,8 +43,7 @@
 		- Be composed only by valid characters i.e 0, 1, C, E, P;  
 	(You can check examples of valid maps on maps folder);
 
-###  Subject:
-[so_long en_subject](./extras/en.subject_so_long.pdf)
+###  Subject: [so_long en_subject](./extras/en.subject_so_long.pdf)
 
 #### Makefile Available Targets:  
 `make` or `make all` - compiles so_long   
