@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   is_onstr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnuno-ca <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/14 03:18:21 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/08/14 17:07:26 by nnuno-ca         ###   ########.fr       */
+/*   Created: 2023/01/26 19:00:20 by roramos           #+#    #+#             */
+/*   Updated: 2023/01/28 16:26:45 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+bool	is_onstr(const char *str, int ch)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+	size_t	i;
+
+	i = 0;
+	if (!str)
+		return (false);
+	while (str[i])
+	{
+		if (str[i] == ch)
+			return (true);
+		i += 1;
+	}
+	return (false);
 }

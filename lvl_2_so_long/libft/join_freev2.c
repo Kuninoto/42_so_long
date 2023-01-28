@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   join_free.c                                        :+:      :+:    :+:   */
+/*   join_freev2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: nnuno-ca <nnuno-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 21:38:23 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2023/01/22 12:32:15 by nnuno-ca         ###   ########.fr       */
+/*   Created: 2022/12/10 18:48:23 by nnuno-ca          #+#    #+#             */
+/*   Updated: 2022/12/10 19:01:20 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*join_free(char *s1, char *s2)
+// Returns a string product of s1 + s2 and frees s2
+char	*join_freev2(char *s1, char *s2)
 {
 	size_t	len_s1;
 	size_t	len_s2;
@@ -35,6 +36,5 @@ char	*join_free(char *s1, char *s2)
 	while (j < len_s2)
 		appended[i++] = s2[j++];
 	appended[i] = '\0';
-	free(s1);
 	return (appended);
 }

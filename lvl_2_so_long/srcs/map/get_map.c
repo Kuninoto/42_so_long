@@ -6,55 +6,53 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 23:15:43 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/27 03:22:50 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/01/28 17:53:31 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "so_long.h"
 
-char	*clean_newline(char	*line)
+bool	valid_extension(char *map_file)
 {
-	char	*clean;
-
-	clean = ft_substr(line, 0, (ft_strlen(line) - 1));
-	free(line);
-	return (clean);
-}
-
-void	check_extension(char *map_file)
-{
-	int		i;
+	size_t	i;
 
 	i = ft_strlen(map_file) - 4;
 	if (ft_strncmp(".ber", &map_file[i], 4) != 0)
-		handle_error("Wrong map file extension");
+		return (false);
+	return (true);
 }
 
 void	get_nbr_rows(char *map_file, t_game *game)
 {
 	int		counter;
 	int		map_fd;
+	char	*temp;
 
 	counter = 0;
 	map_fd = open(map_file, O_RDONLY);
 	if (map_fd == -1)
-		handle_error("Couldn't open map's file");
-	while (get_next_line(map_fd))
-		counter++;
+		panic(game, OPEN_MAP_FILE_ERR);
+	temp = get_next_line(map_fd);
+	while (temp)
+	{
+		counter += 1;
+		free(temp);
+		temp = get_next_line(map_fd);
+	}
 	if (counter == 0)
-		handle_error("Map file is empty");
+		panic(game, EMPTY_MAP_FILE);
 	game->map.rows = counter;
 	close(map_fd);
 }
 
 void	get_lines(char *map_file, t_game *game)
 {
-	int		map_fd;
-	int		i;
+	int	map_fd;
+	int	i;
 
 	map_fd = open(map_file, O_RDONLY);
 	if (map_fd == -1)
-		handle_error("Couldn't open map's file");
+		panic(game, OPEN_MAP_FILE_ERR);
 	i = 0;
 	while (i < game->map.rows)
 		game->map.map[i++] = get_next_line(map_fd);
@@ -63,16 +61,21 @@ void	get_lines(char *map_file, t_game *game)
 	i = 0;
 	while (i < (game->map.rows - 1))
 	{
-		game->map.map[i] = clean_newline(game->map.map[i]);
-		i++;
+		game->map.map[i] = trim_free(game->map.map[i], "\n");
+		if (!game->map.map[i])
+			panic(game, MALLOC_ERR);
+		i += 1;
 	}
 	game->map.columns = ft_strlen(game->map.map[0]);
 }
 
 void	get_map(char *map_file, t_game *game)
 {
-	check_extension(map_file);
+	if (!valid_extension(map_file))
+		panic(game, INVALID_MAP_FILE);
 	get_nbr_rows(map_file, game);
 	game->map.map = malloc((game->map.rows + 1) * sizeof(char *));
+	if (!game->map.map)
+		panic(game, MALLOC_ERR);
 	get_lines(map_file, game);
 }

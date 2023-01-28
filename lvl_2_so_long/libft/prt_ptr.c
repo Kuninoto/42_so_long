@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:01:49 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/17 21:36:15 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/01/23 23:14:51 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	rev_print(char *hexa)
 	len = ft_strlen(hexa) - 1;
 	rtrn = 0;
 	while (len >= 0)
-		rtrn += write(1, &hexa[len--], 1);
+		rtrn += write(STDOUT_FILENO, &hexa[len--], 1);
 	return (--rtrn);
 }
 
@@ -47,7 +47,7 @@ static int	hexa_convptr(unsigned long addr)
 int	prt_ptr(void *ptr_addr)
 {
 	if (ptr_addr == 0)
-		return (write(1, "(nil)", 5));
-	write(1, "0x", 2);
+		return (write(STDOUT_FILENO, "(nil)", 5));
+	write(STDOUT_FILENO, "0x", 2);
 	return (hexa_convptr((unsigned long int)ptr_addr) + 2);
 }

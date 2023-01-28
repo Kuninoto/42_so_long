@@ -3,48 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   prt_unsigned.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: nnuno-ca <nnuno-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:10:56 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/17 21:36:11 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:10:58 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static unsigned	int	unsigned_digits(unsigned int n)
+static unsigned	int	u_digits(unsigned int n)
 {
 	int	digits;
 
 	digits = 0;
+	if (n == 0)
+		return (1);
 	while (n != 0)
 	{
-		n = n / 10;
-		digits++;
+		n /= 10;
+		digits += 1;
 	}
 	return (digits);
 }
 
+static void	put_uint(int n)
+{
+	static char	digits[] = "0123456789";
+
+	if (n > 9)
+		put_uint(n / 10);
+	write(STDOUT_FILENO, &digits[n % 10], 1);
+}
+
 int	prt_unsigned(unsigned int nbr)
 {
-	unsigned int	digits;
-	char			*result;
-	int				len;
-
-	if (nbr == 0)
-		return (write (1, "0", 1));
-	digits = unsigned_digits(nbr);
-	len = digits;
-	result = malloc((digits + 1) * sizeof(char));
-	result[digits--] = '\0';
-	if (nbr == 0)
-		result[0] = '0';
-	while (nbr != 0)
-	{
-		result[digits--] = (nbr % 10) + 48;
-		nbr = nbr / 10;
-	}
-	write(1, result, len);
-	free(result);
-	return (len);
+	put_uint(nbr);
+	return (u_digits(nbr));
 }

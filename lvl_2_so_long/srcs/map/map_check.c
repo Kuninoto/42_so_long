@@ -6,94 +6,88 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:38:12 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/27 03:23:14 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/01/28 17:25:31 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void	errors_on_elements(t_game *game)
+#define VALID_ENTITIES "ECP01"
+
+static void	throw_if(t_game *game)
 {
 	if (game->map.exit == 0 || game->map.exit > 1)
-		handle_error("Invalid number of Exits (E)");
+		panic(game, INVALID_NBR_EXITS);
 	if (game->map.collectibles == 0)
-		handle_error("Map doesn't have any Collectible (C)");
+		panic(game, NO_COLLECTIBLES);
 	if (game->map.player == 0 || game->map.player > 1)
-		handle_error("Invalid number of Starting Positions (P)");
+		panic(game, INVALID_NBR_PLAYERS);
 }
 
-void	elements_check(t_game *game)
+static void	check_elements(t_game *game)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = -1;
-	while (game->map.map[++i])
+	while (++i < game->map.rows)
 	{
 		j = -1;
-		while (game->map.map[i][++j])
+		while (++j < game->map.columns)
 		{
-			if (ft_strchr("ECP01", game->map.map[i][j]) == NULL)
-				handle_error("Invalid character on map's file");
-			if (game->map.map[i][j] == 'E')
-				game->map.exit++;
-			else if (game->map.map[i][j] == 'C')
-				game->map.collectibles++;
-			else if (game->map.map[i][j] == 'P')
+			if (!is_onstr(VALID_ENTITIES, game->map.map[i][j]))
+				panic(game, INVALID_ENTITY);
+			if (game->map.map[i][j] == EXIT)
+				game->map.exit += 1;
+			else if (game->map.map[i][j] == COLLECTIBLE)
+				game->map.collectibles += 1;
+			else if (game->map.map[i][j] == PLAYER)
 			{
-				game->map.player_x = i;
-				game->map.player_y = j;
-				game->map.player++;
+				game->map.player += 1;
+				game->map.player_pos = (t_point){i, j};
 			}
 		}
 	}
-	errors_on_elements(game);
+	throw_if(game);
 }
 
-void	closed_check(t_game *game)
+static bool	is_closed(t_map *map)
 {
-	int		rows;
-	int		columns;
-	int		i;
-	int		j;
-
-	rows = game->map.rows;
-	columns = game->map.columns;
-	i = 0;
-	j = 0;
-	while (game->map.map[i][j] || game->map.map[rows - 1][j])
-	{
-		if (game->map.map[i][j] != '1' || game->map.map[rows - 1][j] != '1')
-			handle_error("Map is not closed by walls");
-		j++;
-	}
-	while (game->map.map[i + 1] != NULL)
-	{
-		if (game->map.map[i][0] != '1' || game->map.map[i][columns - 1] != '1')
-			handle_error("Map is not closed by walls");
-		i++;
-	}
-}
-
-void	form_check(t_game *game)
-{
-	int	len;
 	int	i;
+
+	i = -1;
+	while (++i < map->rows)
+		if (map->map[i][0] != WALL || map->map[i][map->columns - 1] != WALL)
+			return (false);
+	i = -1;
+	while (++i < map->columns)
+		if (map->map[0][i] != WALL || map->map[map->rows - 1][i] != WALL)
+			return (false);
+	return (true);
+}
+
+static bool	valid_form(t_game *game)
+{
+	size_t	len;
+	size_t	i;
 
 	len = game->map.columns;
 	i = 0;
 	while (game->map.map[i] != NULL)
 	{
-		if (len != (int)ft_strlen(game->map.map[i]))
-			handle_error("Invalid map format");
-		i++;
+		if (len != ft_strlen(game->map.map[i]))
+			return (false);
+		i += 1;
 	}
+	return (true);
 }
 
 void	map_check(t_game *game)
 {
-	form_check(game);
-	closed_check(game);
-	elements_check(game);
-	path_check(game);
+	if (!valid_form(game))
+		panic(game, INVALID_FORMAT);
+	if (!is_closed(&game->map))
+		panic(game, MAP_NOT_CLOSED);
+	check_elements(game);
+	check_path(game);
 }

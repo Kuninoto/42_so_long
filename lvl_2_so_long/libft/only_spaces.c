@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_error.c                                     :+:      :+:    :+:   */
+/*   only_isspaces.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnuno-ca <nnuno-ca@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 17:58:18 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/27 16:13:29 by nnuno-ca         ###   ########.fr       */
+/*   Created: 2022/12/22 22:13:53 by nnuno-ca          #+#    #+#             */
+/*   Updated: 2023/01/22 01:06:54 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "libft.h"
 
-void	handle_error(char *error_msg)
+bool	only_spaces(const char *str)
 {
-	write(2, "Error\n", 6);
-	write(2, error_msg, ft_strlen(error_msg));
-	write(2, "\n", 1);
-	exit(EXIT_FAILURE);
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!is_spaces(str[i]))
+			return (false);
+		i += 1;
+	}
+	return (true);
 }

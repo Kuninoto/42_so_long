@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnuno-ca <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 16:36:48 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/08/14 18:12:57 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/01/22 02:32:04 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_memset(void *ptr, int x, size_t n)
 	while (i < n)
 	{
 		*(conv_ptr + i) = x;
-		i++;
+		i += 1;
 	}
 	return (ptr);
 }
