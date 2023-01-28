@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 00:20:43 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2023/01/28 17:24:54 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/01/28 18:09:57 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@
 # define COLLECTIBLE_XPM_ERR "Couldn't open collectible image"
 # define EXIT_XPM_ERR "Couldn't open exit image"
 
-
 typedef struct s_point {
 	int	x;
 	int	y;
@@ -97,7 +96,6 @@ typedef struct s_game {
 	int			moves;
 }				t_game;
 
-
 static inline t_game	init_game(void)
 {
 	return ((t_game){
@@ -113,13 +111,14 @@ static inline t_game	init_game(void)
 		.tiles.player = NULL,
 		.tiles.wall = NULL,
 		.moves = 0,
-		});
-};
+	});
+}
 
 void	get_map(char *map_file, t_game *game);
 void	map_check(t_game *game);
 
-/*	Checks if the map has a valid exit path and if all entities are achievable */
+/*	Checks if the map has a valid exit path
+and if all entities are achievable */
 void	check_path(t_game *game);
 
 void	init_mlx(t_game *game);
@@ -136,10 +135,9 @@ int		quit_game(t_game *game);
 void	panic(t_game *game, char *error_msg);
 
 /* Destroys game ptr and all its inside fields */
-void    destroy(t_game *game);
+void	destroy(t_game *game);
 
 /* Frees matrix ptr and all its inside fields */
-void    free_matrix(char **matrix);
-
+void	free_matrix(char **matrix);
 
 #endif
