@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   join_free.c                                        :+:      :+:    :+:   */
+/*   join_free_both.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: nnuno-ca <nnuno-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 21:38:23 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2023/01/22 12:32:15 by nnuno-ca         ###   ########.fr       */
+/*   Created: 2023/01/22 12:26:29 by nnuno-ca          #+#    #+#             */
+/*   Updated: 2023/01/27 18:09:14 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*join_free(char *s1, char *s2)
+char	*join_free_both(char *s1, char *s2)
 {
 	size_t	len_s1;
 	size_t	len_s2;
-	char	*appended;
+	char	*final_str;
 	size_t	i;
 	size_t	j;
 
@@ -24,17 +24,18 @@ char	*join_free(char *s1, char *s2)
 		return (NULL);
 	len_s1 = ft_strlen(s1);
 	len_s2 = ft_strlen(s2);
-	appended = malloc((len_s1 + len_s2 + 1) * sizeof(char));
-	if (!appended)
-		return (NULL);
+	final_str = malloc((len_s1 + len_s2 + 1) * sizeof(char));
 	i = 0;
 	j = 0;
+	if (final_str == NULL)
+		return (NULL);
 	while (j < len_s1)
-		appended[i++] = s1[j++];
+		final_str[i++] = s1[j++];
 	j = 0;
 	while (j < len_s2)
-		appended[i++] = s2[j++];
-	appended[i] = '\0';
+		final_str[i++] = s2[j++];
+	final_str[i] = '\0';
 	free(s1);
-	return (appended);
+	free(s2);
+	return (final_str);
 }

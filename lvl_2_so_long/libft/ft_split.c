@@ -3,78 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: nnuno-ca <nnuno-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 17:02:49 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/03 01:01:42 by nnuno-ca         ###   ########.fr       */
+/*   Created: 2022/10/11 19:42:18 by roramos           #+#    #+#             */
+/*   Updated: 2023/01/27 19:05:50 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_nr_strs(char const *s, char c)
+static int	words_counter(char const *s, char c)
 {
-	size_t	nr_strs;
-	size_t	new_str;
-	size_t	i;
+	int	words;
+	int	flag;
+	int	i;
 
-	nr_strs = 0;
+	words = 0;
+	flag = 0;
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] != c && new_str == 0)
+		if (s[i] != c && flag == 0)
 		{
-			new_str = 1;
-			nr_strs++;
+			flag = 1;
+			words++;
 		}
 		else if (s[i] == c)
-			new_str = 0;
+			flag = 0;
 		i++;
 	}
-	return (nr_strs);
+	return (words);
 }
 
-static char	**matrix_writtin(char const *s, char c, char **matrix, size_t s_len)
+static int	letters_in_word(char const *s, char c, int i)
 {
-	size_t	i;
-	size_t	lines;
-	size_t	line_len;
+	int	size;
 
-	i = 0;
-	lines = 0;
-	line_len = 0;
-	while (i < (s_len + 1))
+	size = 0;
+	while (s[i] && s[i] != c)
 	{
-		if (s[i] == c || !s[i])
-		{
-			if (line_len > 0)
-			{
-				matrix[lines] = malloc((line_len + 1) * sizeof(char));
-				if (matrix[lines] != NULL)
-					ft_strlcpy(matrix[lines], &s[i - line_len], line_len + 1);
-				line_len = 0;
-				lines++;
-			}
-		}
-		else
-			line_len++;
+		size++;
 		i++;
 	}
-	return (matrix);
+	return (size);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	size_t			nr_strs;
-	char			**matrix;
+	int		i;
+	int		j;
+	int		word;
+	char	**str;
 
 	if (!s)
 		return (NULL);
-	nr_strs = ft_nr_strs(s, c);
-	matrix = malloc((nr_strs + 1) * sizeof(char *));
-	if (!matrix)
+	i = 0;
+	j = -1;
+	word = words_counter(s, c);
+	str = malloc((word + 1) * sizeof(char *));
+	if (!str)
 		return (NULL);
-	matrix_writtin(s, c, matrix, ft_strlen(s));
-	matrix[nr_strs] = NULL;
-	return (matrix);
+	while (++j < word)
+	{
+		while (s[i] == c)
+			i++;
+		str[j] = ft_substr(s, i, letters_in_word(s, c, i));
+		if (!str)
+			return (NULL);
+		i += letters_in_word(s, c, i);
+	}
+	str[j] = NULL;
+	return (str);
 }

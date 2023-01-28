@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   streq.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnuno-ca <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/14 21:49:15 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/08/14 21:51:56 by nnuno-ca         ###   ########.fr       */
+/*   Created: 2022/12/14 22:18:00 by nnuno-ca          #+#    #+#             */
+/*   Updated: 2023/01/19 01:47:33 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tolower(int c)
+bool	streq(char *str1, char *str2)
 {
-	if (c >= 'A' && c <= 'Z')
-		return (c + 32);
-	return (c);
+	size_t	i;
+
+	if ((str1 && !str2) || (!str1 && str2))
+		return (false);
+	i = 0;
+	while (str1[i] || str2[i])
+	{
+		if (str1[i] != str2[i])
+			return (false);
+		i += 1;
+	}
+	return (true);
 }

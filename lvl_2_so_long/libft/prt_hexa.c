@@ -3,50 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   prt_hexa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: nnuno-ca <nnuno-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 18:34:14 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/17 21:36:02 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:10:47 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	rev_print(char *hexa)
+static int	digits_hexa(int n)
 {
-	int	len;
-	int	rtrn;
+	int	digits;
 
-	len = ft_strlen(hexa) - 1;
-	rtrn = 0;
-	while (len >= 0)
-		rtrn += write(1, &hexa[len--], 1);
-	return (--rtrn);
+	digits = 0;
+	if (n == 0)
+		return (1);
+	while (n != 0)
+	{
+		n /= 16;
+		digits += 1;
+	}
+	return (digits);
+}
+
+static void	put_hexa(unsigned int nbr, bool upper_case)
+{
+	static char	upper[] = "0123456789ABCDEF";
+	static char	lower[] = "0123456789abcdef";
+
+	if (nbr > 16)
+		put_hexa(nbr, upper_case);
+	if (upper_case)
+		write(STDOUT_FILENO, &upper[nbr % 10], 1);
+	else
+		write(STDOUT_FILENO, &lower[nbr % 10], 1);
 }
 
 int	prt_hexa(unsigned int nbr, bool upper_case)
 {
-	int		conv_to_af;
-	int		i;
-	int		temp;
-	char	hexa[42];
-
-	if (upper_case == true)
-		conv_to_af = 55;
-	else
-		conv_to_af = 87;
-	i = 0;
-	if (nbr == 0)
-		return (write(1, "0", 1));
-	while (nbr != 0)
-	{
-		temp = nbr % 16;
-		if (temp < 10)
-			hexa[i++] = temp + 48;
-		else
-			hexa[i++] = temp + conv_to_af;
-		nbr = nbr / 16;
-	}
-	hexa[i] = '\0';
-	return (rev_print(hexa) + 1);
+	put_hexa(nbr, upper_case);
+	return (digits_hexa(nbr));
 }

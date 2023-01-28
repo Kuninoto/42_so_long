@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   is_all_digits.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnuno-ca <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/14 01:05:55 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/08/21 19:16:18 by nnuno-ca         ###   ########.fr       */
+/*   Created: 2023/01/20 19:25:11 by nnuno-ca          #+#    #+#             */
+/*   Updated: 2023/01/22 02:08:25 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+bool	is_all_digits(char *str)
 {
-	if (fd < 0)
-		return ;
-	write(fd, &c, 1);
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (false);
+		i += 1;
+	}
+	return (true);
 }

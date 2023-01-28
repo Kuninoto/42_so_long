@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 12:24:06 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/11/17 21:36:29 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/01/23 23:16:01 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static int	exec_conversion(char spec_ltr, va_list args)
 {
 	if (spec_ltr == '%')
-		return (write(1, "%", 1));
+		return (write(STDOUT_FILENO, "%", 1));
 	else if (spec_ltr == 'c')
 	{
-		ft_putchar_fd(va_arg(args, int), 1);
+		ft_putchar_fd(va_arg(args, int), STDOUT_FILENO);
 		return (1);
 	}
 	else if (spec_ltr == 's')
@@ -51,12 +51,12 @@ int	ft_printf(const char *__format, ...)
 	{
 		if (__format[i] == '%')
 		{
-			i++;
+			i += 1;
 			len += exec_conversion(__format[i], args);
 		}
 		else
-			len += write(1, &__format[i], 1);
-		i++;
+			len += write(STDOUT_FILENO, &__format[i], 1);
+		i += 1;
 	}
 	va_end(args);
 	return (len);

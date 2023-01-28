@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnuno-ca <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 02:47:05 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2022/08/23 19:55:09 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/01/23 22:53:24 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ static int	ft_digits(int n)
 
 	digits = 0;
 	if (n <= 0)
-		digits++;
+		digits += 1;
 	while (n != 0)
 	{
-		n = n / 10;
-		digits++;
+		n /= 10;
+		digits += 1;
 	}
 	return (digits);
 }
 
 char	*ft_itoa(int n)
 {
-	size_t	digits;
+	int		digits;
 	int		signal;
 	char	*result;
 
@@ -38,7 +38,7 @@ char	*ft_itoa(int n)
 	result = malloc((digits + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
-	result[digits] = '\0';
+	result[digits--] = '\0';
 	if (n < 0)
 	{
 		signal = -1;
@@ -48,9 +48,8 @@ char	*ft_itoa(int n)
 		result[0] = '0';
 	while (n != 0)
 	{
-		digits--;
-		result[digits] = (n % 10 * signal) + '0';
-		n = n / 10;
+		result[digits--] = (n % 10 * signal) + '0';
+		n /= 10;
 	}
 	return (result);
 }

@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 21:25:58 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2023/01/22 02:45:28 by nnuno-ca         ###   ########.fr       */
+/*   Created: 2022/12/22 15:54:35 by roramos           #+#    #+#             */
+/*   Updated: 2023/01/22 14:44:11 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+char	*ft_strcpy(char *to_copy)
 {
-	unsigned char		*mem_allocated;
-	unsigned int		total;
-	size_t				i;
+	char		*copy;
+	size_t		i;
 
-	if (nmemb == 0 || size == 0)
-		return (NULL);
-	total = nmemb * size;
-	mem_allocated = malloc(total);
-	if (mem_allocated == NULL)
-		return (NULL);
+	if (!to_copy)
+	{
+		copy = malloc(2 * sizeof(char));
+		copy[0] = ' ';
+		copy[1] = '\0';
+		return (copy);
+	}
+	copy = malloc((ft_strlen(to_copy) + 1) * sizeof(char));
 	i = 0;
-	while (total-- > 0)
-		mem_allocated[i++] = 0;
-	return ((void *)mem_allocated);
+	while (to_copy[i])
+	{
+		copy[i] = to_copy[i];
+		i += 1;
+	}
+	copy[i] = '\0';
+	return (copy);
 }
