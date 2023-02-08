@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:38:12 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2023/01/28 17:25:31 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/02/08 21:13:57 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define VALID_ENTITIES "ECP01"
 
-static void	throw_if(t_game *game)
+static void	throw_error_if(t_game *game)
 {
 	if (game->map.exit == 0 || game->map.exit > 1)
 		panic(game, INVALID_NBR_EXITS);
@@ -44,11 +44,11 @@ static void	check_elements(t_game *game)
 			else if (game->map.map[i][j] == PLAYER)
 			{
 				game->map.player += 1;
-				game->map.player_pos = (t_point){i, j};
+				game->map.player_pos = (t_point){j, i};
 			}
 		}
 	}
-	throw_if(game);
+	throw_error_if(game);
 }
 
 static bool	is_closed(t_map *map)
