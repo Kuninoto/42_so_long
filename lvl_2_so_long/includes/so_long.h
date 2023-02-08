@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 00:20:43 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2023/01/28 18:09:57 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/02/08 23:29:51 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 # include "libft.h"
 # include "tiles.h"
 # include "keys.h"
+# include "error_messages.h"
 # include "../mlx/mlx.h"
+
+// CONSTANTS
 
 # define OPEN_SPACE '0'
 # define WALL '1'
@@ -24,40 +27,10 @@
 # define COLLECTIBLE 'C'
 # define PLAYER 'P'
 
-# define WIN_MSG "\nYou won, that's all folks!\n"
+# define KEYPRESS_EVENT 2
+# define DESTROY_NOTIFY_EVENT 17
 
-/* ERROR MESSAGES */
-
-# define MALLOC_ERR "malloc() failed"
-
-/* CL arguments validation */
-# define INVALID_NBR_ARGS "Invalid number of arguments" 
-# define NULL_MAP "NULL map argument"
-
-/* Map validation */
-
-# define INVALID_ENTITY "Invalid entity on map's file"
-# define INVALID_FORMAT "Invalid map format"
-# define MAP_NOT_CLOSED "Map is not closed by walls"
-# define INVALID_NBR_EXITS "Invalid number of Exits (E)"
-# define NO_COLLECTIBLES "Map doesn't have any Collectible (C)"
-# define INVALID_NBR_PLAYERS "Invalid number of Starting Positions (P)"
-
-# define UNACHIEVABLE_ENTITIES "Map has unachievable entities"
-
-/* Reading map's content */
-
-# define INVALID_MAP_FILE "Invalid map file extension"
-# define OPEN_MAP_FILE_ERR "Couldn't open map's file"
-# define EMPTY_MAP_FILE "Map file is empty"
-
-/* XPM Opening */
-
-# define WALL_XPM_ERR "Couldn't open wall image"
-# define FLOOR_XPM_ERR "Couldn't open floor image"
-# define PLAYER_XPM_ERR "Couldn't open player image"
-# define COLLECTIBLE_XPM_ERR "Couldn't open collectible image"
-# define EXIT_XPM_ERR "Couldn't open exit image"
+# define WIN_MSG "You won, that's all folks!\n"
 
 typedef struct s_point {
 	int	x;
@@ -110,7 +83,7 @@ static inline t_game	init_game(void)
 		.tiles.floor = NULL,
 		.tiles.player = NULL,
 		.tiles.wall = NULL,
-		.moves = 0,
+		.moves = -1,
 	});
 }
 
@@ -125,6 +98,8 @@ void	init_mlx(t_game *game);
 void	get_tilemap(t_game *game);
 
 void	render_tilemap(t_game *game);
+void	update_player_pos(t_game *game, bool horizontal, int length);
+void 	put_player_tile(t_game *game);
 void	hook_n_run(t_game *game);
 
 int		quit_game(t_game *game);

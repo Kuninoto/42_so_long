@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_tilemap.c                                      :+:      :+:    :+:   */
+/*   tilemap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 21:20:29 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2023/01/28 16:03:22 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/02/08 23:08:14 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	check_error_on_xpms(t_game *game)
+static void	check_error_on_xpms(t_game *game)
 {	
 	if (!game->tiles.wall)
 		panic(game, WALL_XPM_ERR);
@@ -26,7 +26,7 @@ void	check_error_on_xpms(t_game *game)
 		panic(game, EXIT_XPM_ERR);
 }
 
-void	open_xpm(t_game *game)
+static void	open_xpm(t_game *game)
 {	
 	int	img_size;
 
@@ -77,7 +77,6 @@ void	render_tilemap(t_game *game)
 {
 	int		i;
 	int		j;
-	char	*moves;
 
 	i = 0;
 	while (i < game->map.rows)
@@ -85,19 +84,14 @@ void	render_tilemap(t_game *game)
 		j = 0;
 		while (j < game->map.columns)
 		{
-			if (i != game->map.player_pos.x || j != game->map.player_pos.y)
+			if (i != game->map.player_pos.y || j != game->map.player_pos.x)
 				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
 					game->tile_map[i][j].img, TILE_SIZE * j, TILE_SIZE * i);
 			j += 1;
 		}
 		i += 1;
 	}
-	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->tiles.player,
-		TILE_SIZE * game->map.player_pos.y, TILE_SIZE * game->map.player_pos.x);
-	moves = ft_itoa(game->moves);
-	mlx_string_put(game->mlx_ptr, game->win_ptr, TILE_SIZE,
-		TILE_SIZE, -1, moves);
-	free(moves);
+	put_player_tile(game);
 }
 
 void	get_tilemap(t_game *game)
