@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 17:38:12 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2023/02/08 21:13:57 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/02/09 00:15:02 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ void	map_check(t_game *game)
 {
 	if (!valid_form(game))
 		panic(game, INVALID_FORMAT);
+	check_elements(game);
 	if (!is_closed(&game->map))
 		panic(game, MAP_NOT_CLOSED);
-	check_elements(game);
 	check_path(game);
 }

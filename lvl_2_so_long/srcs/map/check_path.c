@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 19:03:23 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2023/02/08 21:31:16 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/02/09 00:20:56 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ void	check_path(t_game *game)
 
 	sol_grid = blank_grid(game);
 	if (!flood_fill(&game->map, game->map.player_pos, sol_grid))
+	{
+		free_matrix(sol_grid);
 		panic(game, UNACHIEVABLE_ENTITIES);
+	}
 	free_matrix(sol_grid);
 }

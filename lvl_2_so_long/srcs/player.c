@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 23:24:00 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2023/02/08 23:27:19 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/02/08 23:54:34 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	put_player_tile(t_game *game)
 	game->moves += 1;
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->tiles.player,
 		TILE_SIZE * game->map.player_pos.x, TILE_SIZE * game->map.player_pos.y);
-	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->tiles.wall, 0, 0);
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+		game->tiles.wall, 0, 0);
 	moves_str = ft_itoa(game->moves);
 	mlx_string_put(game->mlx_ptr, game->win_ptr, 32, 10, 1, moves_str);
 	free(moves_str);
@@ -32,8 +33,6 @@ static void	which_tile(t_game *game)
 	{
 		game->map.map[game->map.player_pos.y]
 		[game->map.player_pos.x] = OPEN_SPACE;
-		game->tile_map[game->map.player_pos.y]
-		[game->map.player_pos.x].img = game->tiles.floor;
 		game->map.collectibles -= 1;
 		return ;
 	}
@@ -45,6 +44,7 @@ static void	which_tile(t_game *game)
 	}
 }
 
+/* Overloads the player tile that is left behind when the player moves */
 static void	update_left_behind_tile(t_game *game)
 {
 	if (game->map.map[game->map.player_pos.y]
