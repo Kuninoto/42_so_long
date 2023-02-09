@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 00:20:43 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2023/02/08 23:55:13 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/02/09 00:30:12 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	render_map(t_game *game);
 
 void	update_player_pos(t_game *game, bool horizontal, int length);
 /* Renders player tile and moves counter */
-void 	put_player_tile(t_game *game);
+void	put_player_tile(t_game *game);
 
 void	hook_n_run(t_game *game);
 
