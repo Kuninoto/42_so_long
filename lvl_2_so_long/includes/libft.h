@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 01:35:12 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2023/01/28 16:13:22 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/02/09 00:29:58 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,7 @@
 # include <fcntl.h>
 
 int					ft_isalpha(int c);
-
-static inline bool	is_digit(int c)
-{
-	if ((c >= '0' && c <= '9'))
-		return (true);
-	return (false);
-}
-
 int					ft_isalnum(int c);
-
-static inline int	ft_isascii(int c)
-{
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
-}
-
 int					ft_isprint(int c);
 size_t				ft_strlen(const char *str);
 void				*ft_memset(void *ptr, int x, size_t n);
@@ -47,21 +31,6 @@ void				*ft_memcpy(void *dest, const void *src, size_t n);
 void				*ft_memmove(void *dest, const void *src, size_t n);
 size_t				ft_strlcpy(char *dest, const char *src, size_t size);
 size_t				ft_strlcat(char *dest, char *src, size_t size);
-
-static inline int	ft_toupper(int c)
-{
-	if (c >= 'a' && c <= 'z')
-		return (c - 32);
-	return (c);
-}
-
-static inline int	ft_tolower(int c)
-{
-	if (c >= 'A' && c <= 'Z')
-		return (c + 32);
-	return (c);
-}
-
 char				*ft_strchr(const char *str, int c);
 char				*ft_strrchr(const char *str, int c);
 int					ft_strncmp(const char *str1, const char *str2, size_t n);

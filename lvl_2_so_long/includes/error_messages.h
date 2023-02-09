@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 22:22:03 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2023/02/08 22:23:03 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/02/09 00:28:30 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 # define MLX_INIT_ERR "Failed to initialize mlx"
 # define MLX_NEW_WINDOW_ERR "Failed to open a new window"
-
 
 /* CL arguments validation */
 # define INVALID_NBR_ARGS "Invalid number of arguments" 

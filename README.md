@@ -3,7 +3,7 @@
 ## Grade: 110/100
 
 ###  Screenshot:
-<img src="https://github.com/Kuninoto/42_so_long/blob/master/extras/game_print01.png"/>
+<img src="https://github.com/Kuninoto/42_so_long/blob/master/extras/showcase.png"/>
 
 ### Installing and running the project:
 
