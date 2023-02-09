@@ -6,7 +6,7 @@
 #    By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 19:35:50 by nnuno-ca          #+#    #+#              #
-#    Updated: 2023/01/28 16:12:13 by nnuno-ca         ###   ########.fr        #
+#    Updated: 2023/02/09 00:42:31 by nnuno-ca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CFLAGS = -Wall -Wextra -Werror -I../includes
 RM = rm -rf
 NAME = libft.a
 
-LIB_SRCS = ft_isalpha.c ft_isalnum.c ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c\
+LIB_SRCS = ft_isalpha.c ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c\
 		   ft_memmove.c ft_strlcpy.c ft_strlcat.c ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c\
 	  	   ft_memcmp.c ft_strnstr.c ft_atoi.c ft_atol.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c \
 		   ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putnbr_fd.c\
