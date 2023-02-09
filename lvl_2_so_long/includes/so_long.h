@@ -6,7 +6,7 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 00:20:43 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2023/02/08 23:29:51 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/02/08 23:55:13 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,6 @@ typedef struct s_map {
 	t_point			player_pos;
 }				t_map;
 
-typedef struct s_tilemap
-{
-	void	*img;
-}				t_tilemap;
-
 typedef struct s_tiles {
 	void	*wall;
 	void	*floor;
@@ -65,7 +60,6 @@ typedef struct s_game {
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_tiles		tiles;
-	t_tilemap	**tile_map;
 	int			moves;
 }				t_game;
 
@@ -87,19 +81,23 @@ static inline t_game	init_game(void)
 	});
 }
 
+/* Parses and saves the given map */
 void	get_map(char *map_file, t_game *game);
-void	map_check(t_game *game);
-
 /*	Checks if the map has a valid exit path
 and if all entities are achievable */
 void	check_path(t_game *game);
+void	map_check(t_game *game);
 
+/* Initializes mlx and win pointers*/
 void	init_mlx(t_game *game);
-void	get_tilemap(t_game *game);
 
-void	render_tilemap(t_game *game);
+/* Renders the respective tiles according to the characters on the map */
+void	render_map(t_game *game);
+
 void	update_player_pos(t_game *game, bool horizontal, int length);
+/* Renders player tile and moves counter */
 void 	put_player_tile(t_game *game);
+
 void	hook_n_run(t_game *game);
 
 int		quit_game(t_game *game);

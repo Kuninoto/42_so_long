@@ -6,23 +6,23 @@
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 23:15:43 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2023/01/28 17:53:31 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/02/09 00:20:23 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool	valid_extension(char *map_file)
+static bool	valid_extension(char *map_file)
 {
 	size_t	i;
 
 	i = ft_strlen(map_file) - 4;
-	if (ft_strncmp(".ber", &map_file[i], 4) != 0)
-		return (false);
-	return (true);
+	if (ft_strncmp(".ber", &map_file[i], 4) == 0)
+		return (true);
+	return (false);
 }
 
-void	get_nbr_rows(char *map_file, t_game *game)
+static void	get_nbr_rows(char *map_file, t_game *game)
 {
 	int		counter;
 	int		map_fd;
@@ -45,7 +45,7 @@ void	get_nbr_rows(char *map_file, t_game *game)
 	close(map_fd);
 }
 
-void	get_lines(char *map_file, t_game *game)
+static void	get_lines(char *map_file, t_game *game)
 {
 	int	map_fd;
 	int	i;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tilemap.c                                          :+:      :+:    :+:   */
+/*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 21:20:29 by nnuno-ca          #+#    #+#             */
-/*   Updated: 2023/02/08 23:08:14 by nnuno-ca         ###   ########.fr       */
+/*   Updated: 2023/02/08 23:44:42 by nnuno-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,59 +44,36 @@ static void	open_xpm(t_game *game)
 	check_error_on_xpms(game);
 }
 
-void	init_tilemap(t_game *game)
+void	render_tiles(t_game *game)
 {
 	int		i;
 	int		j;
 
-	game->tile_map = malloc((game->map.rows) * sizeof(t_tilemap *));
-	if (!game->tile_map)
-		panic(game, MALLOC_ERR);
 	i = -1;
 	while (++i < game->map.rows)
 	{
-		game->tile_map[i] = malloc((game->map.columns) * sizeof(t_tilemap));
-		if (!game->tile_map[i])
-			panic(game, MALLOC_ERR);
 		j = -1;
 		while (++j < game->map.columns)
 		{
 			if (game->map.map[i][j] == WALL)
-				game->tile_map[i][j].img = game->tiles.wall;
-			else if (game->map.map[i][j] == COLLECTIBLE)
-				game->tile_map[i][j].img = game->tiles.collectible;
-			else if (game->map.map[i][j] == EXIT)
-				game->tile_map[i][j].img = game->tiles.exit;
-			else
-				game->tile_map[i][j].img = game->tiles.floor;
-		}
-	}
-}
-
-void	render_tilemap(t_game *game)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < game->map.rows)
-	{
-		j = 0;
-		while (j < game->map.columns)
-		{
-			if (i != game->map.player_pos.y || j != game->map.player_pos.x)
 				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-					game->tile_map[i][j].img, TILE_SIZE * j, TILE_SIZE * i);
-			j += 1;
+					game->tiles.wall, TILE_SIZE * j, TILE_SIZE * i);
+			else if (game->map.map[i][j] == COLLECTIBLE)
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+					game->tiles.collectible, TILE_SIZE * j, TILE_SIZE * i);
+			else if (game->map.map[i][j] == EXIT)
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+					game->tiles.exit, TILE_SIZE * j, TILE_SIZE * i);
+			else
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+					game->tiles.floor, TILE_SIZE * j, TILE_SIZE * i);
 		}
-		i += 1;
 	}
 	put_player_tile(game);
 }
 
-void	get_tilemap(t_game *game)
+void	render_map(t_game *game)
 {
 	open_xpm(game);
-	init_tilemap(game);
-	render_tilemap(game);
+	render_tiles(game);
 }

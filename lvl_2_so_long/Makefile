@@ -6,7 +6,7 @@
 #    By: nnuno-ca <nnuno-ca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 23:48:22 by nnuno-ca          #+#    #+#              #
-#    Updated: 2023/02/08 23:25:07 by nnuno-ca         ###   ########.fr        #
+#    Updated: 2023/02/08 23:43:21 by nnuno-ca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ RM = rm -rf
 NAME = so_long
 
 UTILS = destroy panic
-MAP = check_path get_map map_check tilemap
+MAP = check_path get_map map_check render_map
 GENERAL = init_mlx player hook_n_run
 
 SRCS = $(addsuffix .c, $(UTILS))\
