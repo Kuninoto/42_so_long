@@ -3,7 +3,7 @@
 ## Grade: 110/100
 
 ###  Screenshot:
-<img src="https://github.com/Kuninoto/42_so_long/blob/master/extras/showcase.png"/>
+<img src="https://github.com/Kuninoto/42_so_long/blob/master/extras/showcase1.png"/>
 
 ### Installing and running the project:
 
